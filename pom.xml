@@ -83,7 +83,7 @@
         <siteOutputDirectory>${project.build.directory}/site</siteOutputDirectory>
 
         <!-- dependency versions -->
-        <clickconcepts-logging.version>0.02-SNAPSHOT</clickconcepts-logging.version>
+        <clickconcepts-logging.version>0.01</clickconcepts-logging.version>
         <spock.version>0.7-groovy-2.0</spock.version>
 
         <!-- Overwrite from Parent Pom  -->
