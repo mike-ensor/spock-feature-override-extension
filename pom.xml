@@ -4,6 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spock-feature-override-extension</artifactId>
+    <groupId>com.clickconcepts.spock</groupId>
+    <version>0.01-SNAPSHOT</version>
 
     <parent>
         <groupId>com.clickconcepts.project</groupId>
@@ -39,7 +41,7 @@
     <distributionManagement>
         <site>
             <id>site-docs</id>
-            <url>http://${repository.user}.${repository.domain}/${repository.name}</url>
+            <url>file://${env.HOME}/sitedocs/${repository.name}</url>
         </site>
         <downloadUrl>${project.scm.url}</downloadUrl>
     </distributionManagement>
@@ -47,24 +49,24 @@
     <inceptionYear>2012</inceptionYear>
 
     <organization>
-        <name>Acquity Group</name>
-        <url>http://www.acquitygroup.com</url>
+        <name>Click Concepts</name>
+        <url>http://www.clickconcepts.com</url>
     </organization>
 
     <developers>
         <developer>
             <name>Mike Ensor</name>
-            <email>mike.ensor@acquitygroup.com</email>
-            <organization>Acquity Group</organization>
-            <organizationUrl>http://www.acquitygroup.com</organizationUrl>
+            <email>mike@clickconcepts.com</email>
+            <organization>Click Concepts</organization>
+            <organizationUrl>http://www.clickconcepts.com</organizationUrl>
             <roles>
-                <role>Enterprise Architect</role>
+                <role>Principal Developer</role>
             </roles>
         </developer>
     </developers>
 
     <properties>
-        <repository.domain>github.org</repository.domain>
+        <repository.domain>github.com</repository.domain>
         <repository.user>mike-ensor</repository.user>
         <repository.name>${project.artifactId}</repository.name>
         <!-- Parameters for Site Docs -->
@@ -75,14 +77,13 @@
 
         <!-- Override Site Documentation SCM publishing parameters  -->
         <scm-publish.scmBranch>master</scm-publish.scmBranch>
-        <scm-publish.pubScmUrl>scm:git:git@github.com:mike-ensor/${project.artifactId}.git</scm-publish.pubScmUrl>
+        <scm-publish.pubScmUrl>scm:git:git@${repository.domain}:${repository.user}/${project.artifactId}.git</scm-publish.pubScmUrl>
 
         <!-- Location of where "site" documentation is output -->
         <siteOutputDirectory>${project.build.directory}/site</siteOutputDirectory>
 
         <!-- dependency versions -->
-        <logback.version>1.0.9</logback.version>
-        <slf4j.version>1.7.2</slf4j.version>
+        <clickconcepts-logging.version>0.02-SNAPSHOT</clickconcepts-logging.version>
         <spock.version>0.7-groovy-2.0</spock.version>
 
         <!-- Overwrite from Parent Pom  -->
@@ -90,14 +91,14 @@
         <checkstyle.skip>true</checkstyle.skip>
         <pmd.skip>true</pmd.skip>
 
-        <changelog.fileUri>${changelog.bitbucket.fileUri}</changelog.fileUri>
-        <changelog.revision.fileUri>${changelog.revision.bitbucket.fileUri}</changelog.revision.fileUri>
+        <changelog.fileUri>${changelog.github.fileUri}</changelog.fileUri>
+        <changelog.revision.fileUri>${changelog.revision.github.fileUri}</changelog.revision.fileUri>
 
     </properties>
 
     <issueManagement>
-        <url>https://mike-acquitygroup.atlassian.net/issues/</url>
-        <system>Atlassian JIRA</system>
+        <url>http://www.github.org/issues/</url>
+        <system>Github Issues</system>
     </issueManagement>
 
     <dependencyManagement>
@@ -105,7 +106,7 @@
             <dependency>
                 <groupId>com.clickconcepts.logging</groupId>
                 <artifactId>clickconcepts-logging</artifactId>
-                <version>0.01-SNAPSHOT</version>
+                <version>${clickconcepts-logging.version}</version>
                 <type>pom</type>
             </dependency>
             <dependency>
