@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>spock-feature-override-extension</artifactId>
+
+    <parent>
+        <groupId>com.clickconcepts.project</groupId>
+        <artifactId>master-site-pom</artifactId>
+        <version>0.18</version>
+    </parent>
+
+
+    <name>${project.artifactId}</name>
+    <description>Spock extension to override parent's features by name</description>
+    <url>${project.scm.url}</url>
+
+    <ciManagement>
+        <system>Bamboo</system>
+        <url>https://mike-acquitygroup.atlassian.net/builds</url>
+    </ciManagement>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:ssh://${repository.domain}/${repository.user}/${repository.name}.git</connection>
+        <url>https://${repository.domain}/${repository.user}/${repository.name}</url>
+        <developerConnection>scm:git:ssh://${repository.domain}/${repository.user}/${repository.name}.git</developerConnection>
+    </scm>
+
+    <distributionManagement>
+        <site>
+            <id>site-docs</id>
+            <url>http://${repository.user}.${repository.domain}/${repository.name}</url>
+        </site>
+        <downloadUrl>${project.scm.url}</downloadUrl>
+    </distributionManagement>
+
+    <inceptionYear>2012</inceptionYear>
+
+    <organization>
+        <name>Acquity Group</name>
+        <url>http://www.acquitygroup.com</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Mike Ensor</name>
+            <email>mike.ensor@acquitygroup.com</email>
+            <organization>Acquity Group</organization>
+            <organizationUrl>http://www.acquitygroup.com</organizationUrl>
+            <roles>
+                <role>Enterprise Architect</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <properties>
+        <repository.domain>github.org</repository.domain>
+        <repository.user>mike-ensor</repository.user>
+        <repository.name>${project.artifactId}</repository.name>
+        <!-- Parameters for Site Docs -->
+        <scmUrl>${project.scm.url}</scmUrl>
+        <gitUrl>git@${repository.domain}:${repository.user}/${repository.name}.git</gitUrl>
+        <!-- Used for Google Search on Site Documentation page -->
+        <sitesearchValue>${repository.user}.${repository.domain}</sitesearchValue>
+
+        <!-- Override Site Documentation SCM publishing parameters  -->
+        <scm-publish.scmBranch>master</scm-publish.scmBranch>
+        <scm-publish.pubScmUrl>scm:git:git@github.com:mike-ensor/${project.artifactId}.git</scm-publish.pubScmUrl>
+
+        <!-- Location of where "site" documentation is output -->
+        <siteOutputDirectory>${project.build.directory}/site</siteOutputDirectory>
+
+        <!-- dependency versions -->
+        <logback.version>1.0.9</logback.version>
+        <slf4j.version>1.7.2</slf4j.version>
+        <spock.version>0.7-groovy-2.0</spock.version>
+
+        <!-- Overwrite from Parent Pom  -->
+        <codenarc.skip>false</codenarc.skip>
+        <checkstyle.skip>true</checkstyle.skip>
+        <pmd.skip>true</pmd.skip>
+
+        <changelog.fileUri>${changelog.bitbucket.fileUri}</changelog.fileUri>
+        <changelog.revision.fileUri>${changelog.revision.bitbucket.fileUri}</changelog.revision.fileUri>
+
+    </properties>
+
+    <issueManagement>
+        <url>https://mike-acquitygroup.atlassian.net/issues/</url>
+        <system>Atlassian JIRA</system>
+    </issueManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.clickconcepts.logging</groupId>
+                <artifactId>clickconcepts-logging</artifactId>
+                <version>0.01-SNAPSHOT</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-core</artifactId>
+                <version>${spock.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-all</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.clickconcepts.logging</groupId>
+            <artifactId>clickconcepts-logging</artifactId>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
